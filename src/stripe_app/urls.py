@@ -31,7 +31,7 @@ urlpatterns = [
         views.item,
         name="item",
     ),
-    path("/", views.index, name="index"),
+    path("", views.index, name="index"),
 ]
 if settings.URL_PREFIX:
     # If there is a URL prefix, add to all.
