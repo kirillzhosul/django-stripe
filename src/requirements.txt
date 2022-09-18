@@ -2,6 +2,9 @@
 django==4.0.5
 django-environ==0.9.0
 
+# Other.
+stripe==4.1.0  # Stripe SDK.
+
 # Database.
 psycopg2-binary==2.9.3  # SQL Engine (PostgreSQL engine core).
 
