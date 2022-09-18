@@ -21,11 +21,13 @@ env = Env(
         "django-insecure-^tk*j=vxzzhj5a!uldh4z9j-@r3s51jzj6^6joujtuvynmbd8k",
     ),
     URL_PREFIX=(str, ""),
+    ALLOWED_HOSTS=(str, "*"),
     POSTGRES_NAME=(str, "django"),
     POSTGRES_USER=(str, "django"),
     POSTGRES_PASSWORD=(str, "postgres"),
     POSTGRES_HOST=(str, "localhost"),
     POSTGRES_PORT=(int, 5432),
+    CSRF_COOKIE_DOMAIN=(str, ""),
 )
 
 
@@ -35,16 +37,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# Production settings.
 SECRET_KEY = env("SECRET_KEY")
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
+ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
+CSRF_COOKIE_DOMAIN = env("CSRF_COOKIE_DOMAIN")
+CSRF_COOKIE_DOMAIN = CSRF_COOKIE_DOMAIN if CSRF_COOKIE_DOMAIN else None
 
-# Temporary!
-ALLOWED_HOSTS = ["*"]
-
+# Proxy.
 URL_PREFIX = env("URL_PREFIX")
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -120,10 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Under proxy.
-USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -134,7 +134,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
