@@ -22,12 +22,12 @@ from stripe_app import views
 urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
     path(
-        "buy/",
+        "buy/<int:item_id>",
         views.buy,
         name="buy",
     ),
     path(
-        "item/",
+        "item/<int:item_id>",
         views.item,
         name="item",
     ),

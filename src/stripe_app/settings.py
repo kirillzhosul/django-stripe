@@ -29,8 +29,14 @@ env = Env(
     POSTGRES_HOST=(str, "localhost"),
     POSTGRES_PORT=(int, 5432),
     CSRF_COOKIE_DOMAIN=(str, ""),
+    STRIPE_API_PUBLISHABLE_KEY=(str, ""),
+    STRIPE_API_SECRET_KEY=(str, ""),
 )
 
+
+# App.
+STRIPE_API_PUBLISHABLE_KEY = env("STRIPE_API_PUBLISHABLE_KEY")
+STRIPE_API_SECRET_KEY = env("STRIPE_API_SECRET_KEY")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,7 +83,7 @@ ROOT_URLCONF = "stripe_app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
