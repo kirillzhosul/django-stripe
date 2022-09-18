@@ -22,7 +22,7 @@ env = Env(
     ),
     URL_PREFIX=(str, ""),
     ALLOWED_HOSTS=(str, "*"),
-    CSRF_TRUSTED_ORIGINS=(str, ["localhost"])
+    CSRF_TRUSTED_ORIGINS=(str, ["localhost"]),
     POSTGRES_NAME=(str, "django"),
     POSTGRES_USER=(str, "django"),
     POSTGRES_PASSWORD=(str, "postgres"),
