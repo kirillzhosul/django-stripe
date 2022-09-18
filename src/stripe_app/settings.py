@@ -40,7 +40,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Production settings.
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
-ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 CSRF_COOKIE_DOMAIN = env("CSRF_COOKIE_DOMAIN")
 CSRF_COOKIE_DOMAIN = CSRF_COOKIE_DOMAIN if CSRF_COOKIE_DOMAIN else None
 
