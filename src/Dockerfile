@@ -17,4 +17,4 @@ RUN pip install --upgrade --no-cache-dir -r requirements.txt
 COPY . /srv/www/
 
 # Run project.
-CMD ["gunicorn", "stripe_app.asgi:application", "-c", "gunicorn.conf.py"]
+CMD ["gunicorn", "project.asgi:application", "-c", "gunicorn.conf.py"]

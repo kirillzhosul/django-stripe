@@ -44,6 +44,7 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Django modules.
 INSTALLED_APPS = [
+    "shop.apps.ShopConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -126,5 +127,5 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Other.
-ROOT_URLCONF = "stripe_app.urls"
-WSGI_APPLICATION = "stripe_app.wsgi.application"
+ROOT_URLCONF = "project.urls"
+WSGI_APPLICATION = "project.wsgi.application"

@@ -1,7 +1,8 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
 from django.shortcuts import render
 from django.conf import settings
 import stripe
+from shop.models import Item
 
 
 def item(req, item_id: int) -> HttpResponse:
@@ -28,6 +29,10 @@ def buy(req, item_id: int) -> JsonResponse:
     Item page fetches this method when user clicks `buy` button.
     Then client site (JS) redirects by Stripe SDK to payment screen.
     """
+    # item = Item.objects.get(pk=item_id)
+    # if not item:
+    #    return HttpResponseNotFound()
+
     stripe.api_key = settings.STRIPE_API_SECRET_KEY
     stripe_session = stripe.checkout.Session.create(
         line_items=[
