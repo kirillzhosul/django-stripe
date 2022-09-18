@@ -1,4 +1,11 @@
+# Web framework (Django).
 django==4.0.5
 django-environ==0.9.0
 
-psycopg2-binary==2.9.3
+# Database.
+psycopg2-binary==2.9.3  # SQL Engine (PostgreSQL engine core).
+
+# ASGI server worker with
+# server process manager.
+uvicorn==0.18.3
+gunicorn==20.1.0

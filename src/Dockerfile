@@ -17,6 +17,4 @@ RUN pip install --upgrade --no-cache-dir -r requirements.txt
 COPY . /srv/www/
 
 # Run project.
-#CMD ["python", "manage.py", "runserver"]
-# 1) This is native run.
-# 2) Launching is done by docker compose (a bit weird for now).
+CMD ["gunicorn", "stripe_app.asgi:application", "-c", "gunicorn.conf.py"]

@@ -49,7 +49,6 @@ services:
     networks:
       - django-stripe-api
     build: .
-    command: sh -c "python manage.py runserver 0.0.0.0:80"
 
 networks:
   django-stripe-api:
