@@ -42,7 +42,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 
 # Temporary!
-ALLOWED_HOSTS = [] if DEBUG else ["*"]
+ALLOWED_HOSTS = ["*"]
 
 URL_PREFIX = env("URL_PREFIX")
 # Application definition
