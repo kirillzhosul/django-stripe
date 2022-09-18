@@ -1,4 +1,7 @@
 # Django Stripe API.
+[![Deploy](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/deploy.yml)
+[![Tests](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/tests.yml/badge.svg)](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/tests.yml) \
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 Test task for one of the companies. Implements Stripe API with Django.
 Main goal is to have endpoint `/item/<item_id>` that will return HTML with item information (from server database) and buy button,
