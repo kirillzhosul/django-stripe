@@ -20,7 +20,13 @@ env = Env(
         str,
         "django-insecure-^tk*j=vxzzhj5a!uldh4z9j-@r3s51jzj6^6joujtuvynmbd8k",
     ),
+    POSTGRES_NAME=(str, "django"),
+    POSTGRES_USER=(str, "django"),
+    POSTGRES_PASSWORD=(str, "postgres"),
+    POSTGRES_HOST=(str, "localhost"),
+    POSTGRES_PORT=(int, 5432),
 )
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,8 +91,12 @@ WSGI_APPLICATION = "stripe_app.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("POSTGRES_NAME"),
+        "USER": env("POSTGRES_USER"),
+        "PASSWORD": env("POSTGRES_PASSWORD"),
+        "HOST": env("POSTGRES_HOST"),
+        "PORT": env("POSTGRES_PORT"),
     }
 }
 
@@ -109,6 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Under proxy.
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
