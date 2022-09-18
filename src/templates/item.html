@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://js.stripe.com/v3/"></script>
-    <title>Buy Item {{ item_id }}</title>
+    <title>Buy {{ item.name }}</title>
   </head>
   <body>
-    <h1>Item {{ item_id }}</h1>
-    <p>Description of Item {{ item_id }}</p>
-    <p>....some text...</p>
-    <button id="buy-button">Buy</button>
+    <h1>{{ item.name }} (Item №{{ item_id}})</h1>
+    <p>Description: {{ item.description }}</p>
+    <button id="buy-button">Buy for {{ item.price / 100 }}$</button>
     <script type="text/javascript">
       let stripe = Stripe("{{ stripe_api_pk }}");
       let buyButton = document.getElementById("buy-button");

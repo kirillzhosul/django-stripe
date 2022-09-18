@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
+from django.http import HttpResponse, JsonResponse, Http404
 from django.shortcuts import render
 from django.conf import settings
 import stripe
@@ -9,6 +9,10 @@ def item(req, item_id: int) -> HttpResponse:
     """
     Item page with information about and buy button.
     """
+    item = Item.objects.get(pk=item_id)
+    if not item:
+        return Http404("Item does not exist!")
+
     # buy_fetch_endpoint -> where to send request to get Stripe session.
     # stripe_api_pk -> publishable key for Stripe API.
     buy_fetch_endpoint = (
@@ -16,6 +20,7 @@ def item(req, item_id: int) -> HttpResponse:
     )
     context = {
         "item_id": item_id,
+        "item": item,
         "buy_fetch_endpoint": buy_fetch_endpoint,
         "stripe_api_pk": settings.STRIPE_API_PUBLISHABLE_KEY,
     }
@@ -29,9 +34,9 @@ def buy(req, item_id: int) -> JsonResponse:
     Item page fetches this method when user clicks `buy` button.
     Then client site (JS) redirects by Stripe SDK to payment screen.
     """
-    # item = Item.objects.get(pk=item_id)
-    # if not item:
-    #    return HttpResponseNotFound()
+    item = Item.objects.get(pk=item_id)
+    if not item:
+        return Http404("Item does not exist!")
 
     stripe.api_key = settings.STRIPE_API_SECRET_KEY
     stripe_session = stripe.checkout.Session.create(
@@ -40,9 +45,9 @@ def buy(req, item_id: int) -> JsonResponse:
                 "price_data": {
                     "currency": "usd",
                     "product_data": {
-                        "name": f"Item #{item_id}",
+                        "name": f"{item.name} (Item №{item_id})",
                     },
-                    "unit_amount": 100,
+                    "unit_amount": item.price,
                 },
                 "quantity": 1,
             }
