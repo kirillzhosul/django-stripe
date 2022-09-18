@@ -20,6 +20,7 @@ env = Env(
         str,
         "django-insecure-^tk*j=vxzzhj5a!uldh4z9j-@r3s51jzj6^6joujtuvynmbd8k",
     ),
+    URL_PREFIX=(str, ""),
     POSTGRES_NAME=(str, "django"),
     POSTGRES_USER=(str, "django"),
     POSTGRES_PASSWORD=(str, "postgres"),
@@ -30,7 +31,6 @@ env = Env(
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -44,6 +44,7 @@ DEBUG = env("DEBUG")
 # Temporary!
 ALLOWED_HOSTS = [] if DEBUG else ["*"]
 
+URL_PREFIX = env("URL_PREFIX")
 # Application definition
 
 INSTALLED_APPS = [

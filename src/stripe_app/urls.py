@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+
 from stripe_app import views
 
 urlpatterns = [
@@ -30,3 +32,6 @@ urlpatterns = [
         name="item",
     ),
 ]
+if settings.URL_PREFIX:
+    # If there is a URL prefix, add to all.
+    urlpatterns = [path(f"{settings.URL_PREFIX}/", include(urlpatterns))]
