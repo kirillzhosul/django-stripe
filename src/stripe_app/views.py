@@ -8,3 +8,7 @@ def item(req) -> HttpResponse:
 
 def buy(req) -> HttpResponse:
     return HttpResponse("buy view")
+
+
+def index(req) -> HttpResponse:
+    return HttpResponse("index view")

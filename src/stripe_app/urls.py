@@ -20,7 +20,7 @@ from django.conf import settings
 from stripe_app import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls, name="admin"),
     path(
         "buy/",
         views.buy,
@@ -31,6 +31,7 @@ urlpatterns = [
         views.item,
         name="item",
     ),
+    path("/", views.index, name="index"),
 ]
 if settings.URL_PREFIX:
     # If there is a URL prefix, add to all.
