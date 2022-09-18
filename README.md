@@ -3,6 +3,7 @@
 Test task for one of the companies. Implement Stripe API with Django.
 Main goal is to have endpoint `/item/<item_id>` that will return HTML with item information (from server database) and buy button,
 that will fetch another route (API) (`/buy/<item_id)` that will return Stripe Session ID that is used to redirect user to payment screen.
+[Test item with id 1!](https://kirillzhosul.site/tests/stripe/item/1)
 
 ## How to try project?
 
@@ -26,8 +27,8 @@ You can modify environment variables inside `/src/.env` file that will be passed
 
 ## Technologies.
 
-- Python / Django (No DRF cause main goal is not to make API) / Gunicorn
-- Sentry API (Under test mode)
+- Python / Django (No DRF cause main goal is not to make API) / Gunicorn (with Uvicorn)
+- Stripe API (Under test mode)
 - Docker / Docker-Compose (Requirements of the test tasks)
 - PostgreSQL (with PgBouncer) / Django ORM (Inside Docker)
 - GitHub Workflows (CI/CD, Should be implemented later)
