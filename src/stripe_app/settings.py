@@ -22,6 +22,7 @@ env = Env(
     ),
     URL_PREFIX=(str, ""),
     ALLOWED_HOSTS=(str, "*"),
+    CSRF_TRUSTED_ORIGINS=(str, ["localhost"])
     POSTGRES_NAME=(str, "django"),
     POSTGRES_USER=(str, "django"),
     POSTGRES_PASSWORD=(str, "postgres"),
@@ -43,6 +44,7 @@ DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 CSRF_COOKIE_DOMAIN = env("CSRF_COOKIE_DOMAIN")
 CSRF_COOKIE_DOMAIN = CSRF_COOKIE_DOMAIN if CSRF_COOKIE_DOMAIN else None
+CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(" ")
 
 # Proxy.
 URL_PREFIX = env("URL_PREFIX")
