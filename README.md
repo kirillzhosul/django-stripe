@@ -1,15 +1,15 @@
-# Django Stripe API.
+# Django Stripe.
 [![Deploy](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/deploy.yml)
 [![Tests](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/tests.yml/badge.svg)](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/tests.yml) \
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-Test task for one of the companies. Implements Stripe API with Django.
+Test task for one of the companies. Django simple *shop* with Stripe.
 Main goal is to have endpoint `/item/<item_id>` that will return HTML with item information (from server database) and buy button,
-that will fetch another route (API) (`/buy/<item_id)` that will return Stripe Session ID that is used to redirect user to payment screen.
+that will fetch another route (API) (`/buy/<item_id>`) that will return Stripe Session ID that is used to redirect user to payment screen (Actually, Stripe itself).
 
 ## How to try project?
 
-Project is being deployed to production by GitHub workflow (deploy action). You can try project [here](https://kirillzhosul.site/tests/stripe) (Click!) \
+Project is being deployed to production by GitHub workflow (deploy action, CD). You can try project [here](https://kirillzhosul.site/tests/stripe) (Click!) \
 [Test item with id 1!](https://kirillzhosul.site/tests/stripe/item/1)
 
 ## Methods.
@@ -21,7 +21,7 @@ Project is being deployed to production by GitHub workflow (deploy action). You 
 
 ## How to run?
 
-Project uses Docker, to run simply:
+Project uses Docker, to run, simply do this in the repository root:
 `cd src && docker-compose up`. This will run Docker, Database and server with Gunicorn with Uvicorn workers!
 
 ## How to configure?
@@ -40,3 +40,7 @@ You can modify environment variables inside `/src/.server.env` file that will be
 - GitHub Workflows (CI/CD)
 - Nginx on the server side as the proxy server.
 - Ubuntu as the server OS.
+
+## References.
+- [Deployed version](https://kirillzhosul.site/tests/stripe)
+- [Stripe](https://stripe.com)
