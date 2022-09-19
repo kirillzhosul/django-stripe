@@ -38,7 +38,7 @@ def buy_view(_, item_id: int) -> JsonResponse:
         secret_key=settings.STRIPE_API_SECRET_KEY,
         # Temporary!
         redirect_url="https://kirillzhosul.site/tests/stripe/",
-        product_name=str(Item),
+        product_name=str(item),
         price=item.price,
         quantity=1,
         currency="usd",
