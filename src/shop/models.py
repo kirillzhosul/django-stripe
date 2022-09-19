@@ -18,7 +18,9 @@ class Item(models.Model):
 
     def __str__(self):
         return f"{self.name} (Item №{self.item_id})"
-
+    
+    def __repr__(self):
+        return f"{self.name} (Item №{self.item_id})"
 
 # May be implemented later:
 #
