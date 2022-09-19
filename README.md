@@ -24,6 +24,11 @@ Project is being deployed to production by GitHub workflow (deploy action, CD). 
 
 Project uses Docker, to run, simply do this in the repository root:
 `cd src && docker-compose up`. This will run Docker, Database and server with Gunicorn with Uvicorn workers!
+#### Static files?
+Currently in production, static files is being served by Ngninx (+Django `collectstatic`)
+On the development, static files is only avaliable when using django `runserver`
+#### Migrations?
+Run `docker exec -it django-stripe-server-1 /bin/sh` and then `python manage.py makemigrations && python manage.py migrate` this will trigger all database migrations!
 
 ## How to configure?
 
@@ -42,11 +47,14 @@ You can modify environment variables inside `/src/.server.env` file that will be
 - Nginx on the server side as the proxy server.
 - Ubuntu as the server OS.
 
-# CI / CD.
+## CI / CD.
 
 - CD: Project have deploy workflow, that will automatically deploy all changes pushed to the `main` branch.
 - CI: Project have tests workflow, that will run Django tests / Test Docker when you are merging branch into `main` branch
   For now there is no special tests written for this project, so tests just not so useful.
+
+## Testing.
+Run `docker exec -it django-stripe-server-1 /bin/sh` and then `python manage.py test` this will trigger all tests!
 
 ## References.
 
