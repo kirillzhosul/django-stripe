@@ -8,7 +8,7 @@
     <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body>
-    <h1>{{ item.name }} (Item №{{ item.id}})</h1>
+    <h1>{{ item }}</h1>
     <p>Description: {{ item.description }}</p>
     <button id="buy-button">Buy for {{ item.get_display_price }}$</button>
     <script type="text/javascript">

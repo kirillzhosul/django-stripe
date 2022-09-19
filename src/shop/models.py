@@ -10,11 +10,14 @@ class Item(models.Model):
     )  # About ~=64 characters long.
     description = models.TextField(verbose_name="Description of item to display")
     # May be decimal field.
-    price = models.IntegerField(verbose_name="Price of item for checkout")
+    price = models.IntegerField(verbose_name="Price of item for checkout (/100!) 250 => 2.5$")
 
     def get_display_price(self) -> float:
         """Returns display price (as model price is stripe-like format price)"""
         return self.price / 100
+
+    def __str__(self):
+        return f"{self.name} (Item №{self.item_id})"
 
 
 # May be implemented later:
