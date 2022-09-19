@@ -3,6 +3,8 @@
 
     Some stuff are may be removed due to not being used.
 """
+
+import os
 from pathlib import Path
 from environ import Env
 
@@ -37,7 +39,6 @@ DEBUG = env("DEBUG")
 SECRET_KEY = env("SECRET_KEY")
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(" ")
-STATIC_URL = f"{URL_PREFIX}/static/" if URL_PREFIX else "static/"
 
 # Under proxy.
 USE_X_FORWARDED_HOST = True
@@ -126,5 +127,11 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Other.
+STATIC_ROOT = "static"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+ADMIN_MEDIA_PREFIX = "/static/admin"
+STATIC_URL = f"/{URL_PREFIX}/static/" if URL_PREFIX else "/static/"
 ROOT_URLCONF = "project.urls"
 WSGI_APPLICATION = "project.wsgi.application"

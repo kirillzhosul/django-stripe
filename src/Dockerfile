@@ -18,4 +18,5 @@ COPY . /srv/
 
 # Run project with Gunicorn process manager.
 # By default, Gunicorn will use Uvicorn ASGI workers.
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
 CMD ["gunicorn", "project.asgi:application", "-c", "gunicorn.conf.py"]
