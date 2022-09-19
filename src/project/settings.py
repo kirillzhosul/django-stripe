@@ -128,9 +128,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Other.
 STATIC_ROOT = "static"
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
 ADMIN_MEDIA_PREFIX = "/static/admin"
 STATIC_URL = f"/{URL_PREFIX}/static/" if URL_PREFIX else "/static/"
 ROOT_URLCONF = "project.urls"
