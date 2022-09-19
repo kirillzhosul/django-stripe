@@ -53,8 +53,10 @@ def buy_view(_, item_id: int) -> JsonResponse:
     )
 
 
-async def index_view(req) -> HttpResponse:
+# Non async!
+def index_view(req) -> HttpResponse:
     """
-    Index root page.  Simple template to display.
+    Index root page. Simple template to display with list of items.
     """
-    return render(req, "index.html")
+    newest_items = Item.objects.order_by("-item_id")[:10]
+    return render(req, "index.html", context={"newest_items": newest_items})

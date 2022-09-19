@@ -8,7 +8,11 @@
   </head>
   <body>
     <h1>Django Stripe</h1>
-    <h3>Welcome there!</h3>
-    <!--{% for i in list %}{{ i }}{% endfor %}-->
+    <p>Welcome there!</p>
+    <h3>Newest items:</h3>
+    {% for i in newest_items %}
+    <a href="item/{{ i.item_id }}">{{ i }}</a>
+    <br />
+    {% endfor %}
   </body>
 </html>
