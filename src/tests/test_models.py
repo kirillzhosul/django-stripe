@@ -10,4 +10,5 @@ class ModelsTestCase(TestCase):
         pass
 
     def test_false_is_false(self):
+        # Will be removed.
         self.assertFalse(False)

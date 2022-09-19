@@ -1,9 +1,10 @@
 # Django Stripe.
+
 [![Deploy](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/deploy.yml)
 [![Tests](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/tests.yml/badge.svg)](https://github.com/kirillzhosul/django-stripe-api/actions/workflows/tests.yml) \
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-Test task for one of the companies. Django simple *shop* with Stripe.
+Test task for one of the companies. Django simple _shop_ with Stripe.
 Main goal is to have endpoint `/item/<item_id>` that will return HTML with item information (from server database) and buy button,
 that will fetch another route (API) (`/buy/<item_id>`) that will return Stripe Session ID that is used to redirect user to payment screen (Actually, Stripe itself).
 
@@ -41,6 +42,13 @@ You can modify environment variables inside `/src/.server.env` file that will be
 - Nginx on the server side as the proxy server.
 - Ubuntu as the server OS.
 
+# CI / CD.
+
+- CD: Project have deploy workflow, that will automatically deploy all changes pushed to the `main` branch.
+- CI: Project have tests workflow, that will run Django tests / Test Docker when you are merging branch into `main` branch
+  For now there is no special tests written for this project, so tests just not so useful.
+
 ## References.
+
 - [Deployed version](https://kirillzhosul.site/tests/stripe)
 - [Stripe](https://stripe.com)

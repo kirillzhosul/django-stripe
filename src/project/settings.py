@@ -1,10 +1,11 @@
+"""
+    Settings for the Application.
+
+    Some stuff are may be removed due to not being used.
+"""
 from pathlib import Path
 from environ import Env
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Environment reader from Docker.
@@ -62,7 +63,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# Templating.
+# Templates.
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -80,9 +81,7 @@ TEMPLATES = [
 ]
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+# Database (Docker, PostgreSQL).
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",

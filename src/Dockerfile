@@ -6,15 +6,16 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Project directory.
-WORKDIR /srv/www
+WORKDIR /srv
 
 # Install requirements.
-COPY requirements.txt /srv/www/
+COPY requirements.txt /srv/
 RUN pip install --upgrade pip
 RUN pip install --upgrade --no-cache-dir -r requirements.txt
 
 # Copy whole project.
-COPY . /srv/www/
+COPY . /srv/
 
-# Run project.
+# Run project with Gunicorn process manager.
+# By default, Gunicorn will use Uvicorn ASGI workers.
 CMD ["gunicorn", "project.asgi:application", "-c", "gunicorn.conf.py"]

@@ -1,61 +1,46 @@
-from django.http import HttpResponse, JsonResponse, Http404
-from django.shortcuts import render
+"""
+    Views for API / templates.
+"""
+
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, get_object_or_404
 from django.conf import settings
-import stripe
+from shop.services.stripe import create_stripe_session
 from shop.models import Item
 
-
-def item(req, item_id: int) -> HttpResponse:
+# Non async!
+def item_view(req, item_id: int) -> HttpResponse:
     """
     Item page with information about and buy button.
     """
-    item = Item.objects.get(pk=item_id)
-    if not item:
-        return Http404("Item does not exist!")
-
-    # buy_fetch_endpoint -> where to send request to get Stripe session.
-    # stripe_api_pk -> publishable key for Stripe API.
-    buy_fetch_endpoint = (
-        f"{'/' if settings.URL_PREFIX else ''}{settings.URL_PREFIX}/buy/{item_id}"
+    # item = get_object_or_404(Item, pk=item_id)
+    item = Item(name="text", description="text", price=300)
+    return render(
+        req,
+        "item.html",
+        context={
+            "item": item,
+            "buy_fetch_endpoint": f"{'/' if settings.URL_PREFIX else ''}{settings.URL_PREFIX}/buy/{item_id}",
+            "stripe_api_pk": settings.STRIPE_API_PUBLISHABLE_KEY,
+        },
     )
-    context = {
-        "item_id": item_id,
-        "item": item,
-        "buy_fetch_endpoint": buy_fetch_endpoint,
-        "stripe_api_pk": settings.STRIPE_API_PUBLISHABLE_KEY,
-    }
-    return render(req, "item.html", context)
 
 
-def buy(req, item_id: int) -> JsonResponse:
+# Non async!
+def buy_view(_, item_id: int) -> JsonResponse:
     """
     Buy API method,
     returns Stripe session information,
     Item page fetches this method when user clicks `buy` button.
     Then client site (JS) redirects by Stripe SDK to payment screen.
     """
-    item = Item.objects.get(pk=item_id)
-    if not item:
-        return Http404("Item does not exist!")
-
-    stripe.api_key = settings.STRIPE_API_SECRET_KEY
-    stripe_session = stripe.checkout.Session.create(
-        line_items=[
-            {
-                "price_data": {
-                    "currency": "usd",
-                    "product_data": {
-                        "name": f"{item.name} (Item №{item_id})",
-                    },
-                    "unit_amount": item.price,
-                },
-                "quantity": 1,
-            }
-        ],
-        # Temporary for no env support!
-        success_url=f"https://kirillzhosul.site/tests/stripe/item/{item_id}",
-        cancel_url=f"https://kirillzhosul.site/tests/stripe/item/{item_id}",
-        mode="payment",
+    item = get_object_or_404(Item, pk=item_id)
+    stripe_session = create_stripe_session(
+        settings.STRIPE_API_SECRET_KEY,
+        product_name=f"{item.name} (Item №{item_id})",
+        price=item.price,
+        quantity=1,
+        currency="usd",
     )
     return JsonResponse(
         {
@@ -67,9 +52,8 @@ def buy(req, item_id: int) -> JsonResponse:
     )
 
 
-def index(req) -> HttpResponse:
+async def index_view(req) -> HttpResponse:
     """
-    Index root page.
-    Simple template.
+    Index root page.  Simple template to display.
     """
-    return render(req, "index.html", context={})
+    return render(req, "index.html")
