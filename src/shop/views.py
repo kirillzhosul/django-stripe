@@ -13,8 +13,7 @@ def item_view(req, item_id: int) -> HttpResponse:
     """
     Item page with information about and buy button.
     """
-    # item = get_object_or_404(Item, pk=item_id)
-    item = Item(name="text", description="text", price=300)
+    item = get_object_or_404(Item, pk=item_id)
     return render(
         req,
         "item.html",
