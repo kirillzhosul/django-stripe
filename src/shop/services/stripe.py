@@ -6,6 +6,7 @@ import stripe
 
 def create_stripe_session(
     secret_key: str,
+    redirect_url: str,
     product_name: str,
     price: int,
     quantity: int = 1,
@@ -29,8 +30,7 @@ def create_stripe_session(
                 "quantity": quantity,
             }
         ],
-        # Temporary for no env support!
-        success_url=f"https://kirillzhosul.site/tests/stripe/item/{item_id}",
-        cancel_url=f"https://kirillzhosul.site/tests/stripe/item/{item_id}",
+        success_url=redirect_url,
+        cancel_url=redirect_url,
         mode="payment",
     )

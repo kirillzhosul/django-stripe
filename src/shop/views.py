@@ -35,7 +35,9 @@ def buy_view(_, item_id: int) -> JsonResponse:
     """
     item = get_object_or_404(Item, pk=item_id)
     stripe_session = create_stripe_session(
-        settings.STRIPE_API_SECRET_KEY,
+        secret_key=settings.STRIPE_API_SECRET_KEY,
+        # Temporary!
+        redirect_url="https://kirillzhosul.site/tests/stripe/",
         product_name=f"{item.name} (Item №{item_id})",
         price=item.price,
         quantity=1,
