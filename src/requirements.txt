@@ -1,5 +1,5 @@
 # Web framework (Django).
-django==4.0.5
+django==4.1.1
 django-environ==0.9.0
 
 # Other.
