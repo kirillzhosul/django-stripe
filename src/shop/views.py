@@ -37,7 +37,7 @@ def buy_view(_, item_id: int) -> JsonResponse:
     stripe_session = create_stripe_session(
         secret_key=settings.STRIPE_API_SECRET_KEY,
         # Temporary!
-        redirect_url="https://kirillzhosul.site/tests/stripe/",
+        redirect_url="https://kirillzhosul.site/tests/stripe/payment/failed",
         product_name=str(item),
         price=item.price,
         quantity=1,
@@ -60,3 +60,17 @@ def index_view(req) -> HttpResponse:
     """
     newest_items = Item.objects.order_by("-item_id")[:10]
     return render(req, "index.html", context={"newest_items": newest_items})
+
+
+async def payment_failed_view(req) -> HttpResponse:
+    """
+    Payment end failure status page.
+    """
+    return render(req, "payment_failed.html")
+
+
+async def payment_success_view(req) -> HttpResponse:
+    """
+    Payment end success status page.
+    """
+    return render(req, "payment_sucess.html")
