@@ -26,7 +26,7 @@ jobs:
         working-directory: ./src
         run: docker ps -a
       - name: Ping web server.
-        run: curl http://localhost/
+        run: curl http://localhost:8000/
       - name: Django tests
         working-directory: ./src
         run: docker exec django-stripe_server_1 python manage.py test
