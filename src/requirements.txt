@@ -8,7 +8,7 @@ django-environ==0.9.0
 stripe==4.2.0  # Stripe SDK for payments.
 
 # Database.
-psycopg2-binary==2.9.3  # SQL Engine (PostgreSQL engine core).
+psycopg2-binary==2.9.5  # SQL Engine (PostgreSQL engine core).
 
 # ASGI server worker with
 # server process manager.
